@@ -8,10 +8,13 @@ from typing import Union, Tuple, Callable, TypeVar, Optional
 from typing_extensions import ParamSpec
 T = TypeVar('T')
 P = ParamSpec('P')
+RotateCallable = Callable[[float, float, float, float], Tuple[float, float]]
+
 
 X = 0
 Y = 1
 Z = 2
+
 
 class TimeMe:
     '''
@@ -39,12 +42,17 @@ class TimeMe:
         return wrapper
 
 
+def sec_to_ms(x: float) -> float:
+    return x * 1000.0
+
+
 def rotate_yz_sin_cos(y: float, z: float, sin_: float, cos_: float) -> Tuple[float, float]:
     if math.isfinite(y) and math.isfinite(z):
         yy = y * cos_ - z * sin_
         zz = y * sin_ + z * cos_
         return yy, zz
     return math.nan, math.nan
+
 
 @numba.njit(cache=True)
 def almost_eq(a: Union[int, float], b: Union[int, float], e: Union[int, float]) -> bool: 
@@ -53,10 +61,11 @@ def almost_eq(a: Union[int, float], b: Union[int, float], e: Union[int, float]) 
         return True
     return abs(a - b) <= e
 
+
 @numba.njit(nogil=True, cache=True)
 def is_almost_eq(mat1: np.ndarray, mat2: np.ndarray, eupsilon: float) -> None:
     '''
-    This method is needed (instead of np.count_nonzero(mat1 == mat2)) becauce
+    This method is needed (instead of np.all(mat1 == mat2)) becauce
     np.nan == np.nan >>> False. Thus we need to manually check the elements.
     '''
     sh1 = mat1.shape
@@ -75,3 +84,6 @@ def is_almost_eq(mat1: np.ndarray, mat2: np.ndarray, eupsilon: float) -> None:
                 return False
     return True
 
+
+def get_noise_pcl(shape: Tuple[int, ...], dtype: np.dtype) -> np.ndarray:
+    return np.random.rand(*shape).astype(dtype)

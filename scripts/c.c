@@ -5,7 +5,7 @@
 #include <math.h>
 #include <pthread.h>
 
-#define NTHREADS  6  // Number of threads to spawn
+#define NTHREADS  4  // Number of threads to spawn
 #define Y         1
 #define Z         2
 
