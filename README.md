@@ -5,7 +5,7 @@
 Given a random pointcloud of shape `(H, W, 4)`, where you have `H * W` 3D points of the form `[X, Y, Z, RGBA]` (made it 4 channels instead of 4 to stay true to the output from something like a [Zed stereo camera](https://www.stereolabs.com/products/zed-x)), how fast can you apply a rotation to all points of the PCL along the X axis ?
 
 <p align="center">
-  <img src="imgs/rot.png">
+  <img src="img/rot.png">
 </p>
 
 
