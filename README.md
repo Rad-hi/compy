@@ -2,7 +2,7 @@
 
 ## Task
 
-Given a random pointcloud of shape `(H, W, 4)`, where you have `H * W` 3D points of the form `[X, Y, Z, RGBA]` (made it 4 channels instead of 4 to stay true to the output from something like a [Zed stereo camera](https://www.stereolabs.com/products/zed-x)), how fast can you apply a rotation to all points of the PCL along the X axis ?
+Given a random pointcloud of shape `(H, W, 4)`, where you have `H * W` 3D points of the form `[X, Y, Z, RGBA]` (made it 4 channels instead of 3 to stay true to the output from something like a [Zed stereo camera](https://www.stereolabs.com/products/zed-x)), how fast can you apply a rotation to all points of the PCL along the X axis ?
 
 <p align="center">
   <img src="img/rot.png">
@@ -11,7 +11,7 @@ Given a random pointcloud of shape `(H, W, 4)`, where you have `H * W` 3D points
 
 ## Content of the repo
 
-Welp, what about I provide you with 5 ways to do it, ranging from the simplest pure python solution (`10+ s`), to coding it in C (`5+ ms`), passing by CUDA (`1+ ms`).
+Welp, what about I provide you with 5 (technically 4, with one non usable way written in pure Python) ways to do it, ranging from the simplest pure python solution (`10+ s`), to coding it in C (`5+ ms`), passing by CUDA (`1+ ms`).
 
 ## run
 
